@@ -7,9 +7,11 @@
     <title>BusDirect</title>
     <link rel="icon" type="image/jpeg" href="img/image.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
-   
 </head>
-<header class="bg-blue-600 text-white w-full flex flex-col md:flex-row items-center justify-around py-5">
+
+<body class="min-h-screen relative font-sans bg-gray-50 pb-28">
+
+    <header class="bg-blue-600 text-white w-full flex flex-col md:flex-row items-center justify-around py-5">
         <div class="logo">
             <h2 class="text-xl font-bold">BusDirect</h2>
         </div>
@@ -27,137 +29,125 @@
             </ul>
         </nav>
     </header>
-<body class="min-h-screen relative font-sans bg-gray-50 pb-20">
 
-    
+    <main class="max-w-6xl mx-auto px-4 py-8">
 
-<main>
-        <div class="flex items-center gap-3 border border-gray-300 rounded-lg p-3">
-  <input
-    type="search"
-    name="search"
-    id="search"
-    placeholder="Search"
-    class="flex-1 rounded-lg border border-gray-300 px-4 py-2 "
-  >
-  <button class="rounded-lg bg-blue-500 px-5 py-2 text-white hover:bg-blue-600 transition">
-    Search
-  </button>
-  <select name="status" id="status" class="rounded-lg border border-gray-300 px-3 py-2">
-    <option value="">Tous</option>
-    <option value="disponible">Disponible</option>
-    <option value="complet">Complet</option>
-  </select>
-</div>   
-    </div>
-<div class="flex items-center justify-center min-h-screen container mx-auto"> 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-    <!-- cart1 -->
+        <div class="flex flex-col md:flex-row items-center gap-3 border border-gray-300 rounded-lg p-3 bg-white mb-8">
+            <input
+                type="search"
+                name="search"
+                id="search"
+                placeholder="Search"
+                class="flex-1 w-full rounded-lg border border-gray-300 px-4 py-2"
+            >
+            <button class="w-full md:w-auto rounded-lg bg-blue-500 px-5 py-2 text-white hover:bg-blue-600 transition">
+                Search
+            </button>
+            <select name="status" id="status" class="w-full md:w-auto rounded-lg border border-gray-300 px-3 py-2">
+                <option value="">Tous</option>
+                <option value="disponible">Disponible</option>
+                <option value="complet">Complet</option>
+            </select>
+        </div>
 
-    <div class="card "> 
-<div class="p-5 grid grid-cols-1 border border-gray-400 rounded-lg">
-    <div class="rounded-xl overflow-hidden">
-        <img src="img/image.jpg" alt="" />
-     
-    </div>
-<h5 class="text-2xl md:text-3xl font-medium gap-3">Traget :</h5>
-<p class="text-slate-500 text-lg gap-3">place disponible ✅ : 20 👤</p>
-<a href="#"class="text-center bg-blue-400 text-blue-700 py-2 rounded-lg font-semibold gap-3 hover:bg-blue-300 focus:scale-95 transition-all duration-200 ease-out">explore</a>
-</div>
-    </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-<!-- cart2 -->
+            <div class="card bg-white rounded-lg shadow-md border border-gray-300 p-6 flex flex-col justify-between hover:shadow-md transition duration-200">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">8:00</span>
+                        <span class="text-xl font-bold text-gray-900">50DH</span>
+                    </div>
+                    <h5 class="text-xl font-bold text-gray-800 mb-2">Traget : Safi &rarr; Marrakech</h5>
+                    <p class="text-gray-600 font-medium text-base mb-4">place disponible ✅ <span class="font-bold text-gray-800">20 👤</span></p>
+                </div>
+                <a href="#" class="w-full text-center bg-blue-500 hover:bg-blue-600 text-white py-2.5 rounded-lg font-semibold transition focus:scale-95">explore</a>
+            </div>
 
-    <div class="card"> 
-<div class="p-5 grid grid-cols-1 border border-gray-400 rounded-lg ">
-    <div class="rounded-xl overflow-hidden">
-        <img src="img/image.jpg" alt="" />
-     
-    </div>
-<h5 class="text-2xl md:text-3xl font-medium gap-3">Traget :</h5>
-<p class="text-slate-500 text-lg gap-3">place disponible ✅ : 20 👤</p>
-<a href="#"class="text-center bg-blue-400 text-blue-700 py-2 rounded-lg font-semibold gap-3 hover:bg-blue-300 focus:scale-95 transition-all duration-200 ease-out">explore</a>
-</div>
-    </div>
+            <div class="card bg-white rounded-lg shadow-md border border-gray-300 p-6 flex flex-col justify-between hover:shadow-md transition duration-200">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">8:00</span>
+                        <span class="text-xl font-bold text-gray-900">50DH</span>
+                    </div>
+                    <h5 class="text-xl font-bold text-gray-800 mb-2">Traget : Safi &rarr; Marrakech</h5>
+                    <p class="text-gray-600 font-medium text-base mb-4">place disponible ✅ <span class="font-bold text-gray-800">20 👤</span></p>
+                </div>
+                <a href="#" class="w-full text-center bg-blue-500 hover:bg-blue-600 text-white py-2.5 rounded-lg font-semibold transition focus:scale-95">explore</a>
+                
+            </div>
 
-    <!-- cart3 -->
+            <div class="card bg-white rounded-lg shadow-md border border-gray-300 p-6 flex flex-col justify-between hover:shadow-md transition duration-200">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">8:00</span>
+                        <span class="text-xl font-bold text-gray-900">50DH</span>
+                    </div>
+                    <h5 class="text-xl font-bold text-gray-800 mb-2">Traget : Safi &rarr; Marrakech</h5>
+                    <p class="text-gray-600 font-medium text-base mb-4">place disponible ✅ <span class="font-bold text-gray-800">20 👤</span></p>
+                </div>
+                <a href="#" class="w-full text-center bg-blue-500 hover:bg-blue-600 text-white py-2.5 rounded-lg font-semibold transition focus:scale-95">explore</a>
+                
+            </div>
 
-    <div class="card"> 
-<div class="p-5 grid grid-cols-1 border border-gray-400 rounded-lg ">
-    <div class="rounded-xl overflow-hidden">
-        <img src="img/image.jpg" alt="" />
-     
-    </div>
-<h5 class="text-2xl md:text-3xl font-medium gap-3">Traget :</h5>
-<p class="text-slate-500 text-lg gap-3">place disponible ✅ : 20 👤</p>
-<a href="#"class="text-center bg-blue-400 text-blue-700 py-2 rounded-lg font-semibold gap-3 hover:bg-blue-300 focus:scale-95 transition-all duration-200 ease-out">explore</a>
-</div>
-    </div>
+            <div class="card bg-white rounded-lg shadow-md border border-gray-300 p-6 flex flex-col justify-between hover:shadow-md transition duration-200">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">8:00</span>
+                        <span class="text-xl font-bold text-gray-900">50DH</span>
+                    </div>
+                    <h5 class="text-xl font-bold text-gray-800 mb-2">Traget : Safi &rarr; Marrakech</h5>
+                    <p class="text-gray-600 font-medium text-base mb-4">place disponible ✅ <span class="font-bold text-gray-800">20 👤</span></p>
+                </div>
+                <a href="#" class="w-full text-center bg-blue-500 hover:bg-blue-600 text-white py-2.5 rounded-lg font-semibold transition focus:scale-95">explore</a>
+                
+            </div>
 
-    <!-- cart4 -->
+            <div class="card bg-white rounded-lg shadow-md border border-gray-300 p-6 flex flex-col justify-between hover:shadow-md transition duration-200">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">8:00</span>
+                        <span class="text-xl font-bold text-gray-900">50DH</span>
+                    </div>
+                    <h5 class="text-xl font-bold text-gray-800 mb-2">Traget : Safi &rarr; Marrakech</h5>
+                    <p class="text-gray-600 font-medium text-base mb-4">place disponible ✅ <span class="font-bold text-gray-800">20 👤</span></p>
+                </div>
+                <a href="#" class="w-full text-center bg-blue-500 hover:bg-blue-600 text-white py-2.5 rounded-lg font-semibold transition focus:scale-95">explore</a>
+                
+            </div>
 
-    <div class="card"> 
-<div class="p-5 grid grid-cols-1 border border-gray-400 rounded-lg ">
-    <div class="rounded-xl overflow-hidden">
-        <img src="img/image.jpg" alt="" />
-     
-    </div>
-<h5 class="text-1xl md:text-2xl font-semibold gap-3">Traget :</h5>
-<p class="text-slate-500 text-lg gap-3">place disponible ✅ : 20 👤</p>
-<a href="#"class="text-center bg-blue-400 text-blue-700 py-2 rounded-lg font-semibold gap-3 hover:bg-blue-300 focus:scale-95 transition-all duration-200 ease-out">explore</a>
-</div>
-    </div>
+            <div class="card bg-white rounded-lg shadow-md border border-gray-300 p-6 flex flex-col justify-between hover:shadow-md transition duration-200">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">8:00</span>
+                        <span class="text-xl font-bold text-gray-900">50DH</span>
+                    </div>
+                    <h5 class="text-xl font-bold text-gray-800 mb-2">Traget : Safi &rarr; Marrakech</h5>
+                    <p class="text-gray-600 font-medium text-base mb-4">place disponible ✅ <span class="font-bold text-gray-800">20 👤</span></p>
+                </div>
+                <a href="#" class="w-full text-center bg-blue-500 hover:bg-blue-600 text-white py-2.5 rounded-lg font-semibold transition focus:scale-95">explore</a>
+                
+            </div>
 
-    <!-- cart5 -->
+        </div>
 
-    <div class="card"> 
-<div class="p-5 grid grid-cols-1 border border-gray-400 rounded-lg ">
-    <div class="rounded-xl overflow-hidden">
-        <img src="img/image.jpg" alt="" />
-     
-    </div>
-<h5 class="text-2xl md:text-3xl font-medium gap-3">Traget :</h5>
-<p class=" text-lg gap-3">place disponible ✅ : 20 👤</p>
-<a href="#"class="text-center bg-blue-400 text-blue-700 py-2 rounded-lg font-semibold gap-3 hover:bg-blue-300 focus:scale-95 transition-all duration-200 ease-out">explore</a>
-</div>
-    </div>
+        <div class="grid place-items-center mt-10">
+            <nav class="flex items-center gap-1" id="pagination">
+                <a class="bg-blue-300 text-gray-700 w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" href="#">&lt;</a>
+                <a class="bg-blue-300 text-gray-700 w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium active" href="#">1</a>
+                <a class="bg-blue-300 text-gray-700 w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" href="#">2</a>
+                <a class="bg-blue-300 text-gray-700 w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" href="#">3</a>
+                <a class="bg-blue-300 text-gray-700 w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" href="#">4</a>
+                <a class="bg-blue-300 text-gray-700 w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" href="#">5</a>
+                <a class="bg-blue-300 text-gray-700 w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" href="#">&gt;</a>
+            </nav>
+        </div>
+    </main>
 
-    <!-- cart6 -->
-
-    <div class="card"> 
-<div class="p-5 grid grid-cols-1 border border-gray-400 rounded-lg rounded-lg">
-    <div class="rounded-xl overflow-hidden">
-        <img src="img/image.jpg" alt="" />
-     
-    </div>
-<h5 class="text-2xl md:text-3xl font-medium gap-3">Traget :</h5>
-<p class="text-slate-500 text-lg gap-3">place disponible ✅ : 20 👤</p>
-<a href="#"class="text-center bg-blue-400 text-blue-700 py-2 rounded-lg font-semibold gap-3 hover:bg-blue-300 focus:scale-95 transition-all duration-200 ease-out">explore</a>
-</div>
-    </div>
-
-</div>
-
-</div> 
-
-    <div class="grid place-items-center">
-        <nav class="flex items-center gap-1" id="pagination">
-<a class="bg-blue-300 text-gray-700 w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" href=""><</a>
-<a class="bg-blue-300 text-gray-700  w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" href="" class="active">1</a>
-<a class="bg-blue-300 text-gray-700  w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" href="">2</a>
-<a class="bg-blue-300 text-gray-700  w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" href="">3</a>
-<a class="bg-blue-300 text-gray-700 no-underline w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" hred="">4</a>
-<a class="bg-blue-300 text-gray-700 no-underline w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" href="">5</a>
-<a class="bg-blue-300 text-gray-700 no-underline w-9 h-9 inline-flex items-center justify-center rounded-lg border border-gray-200 text-[0.85rem] font-medium" href="">></a>
- </nav>
-</div>
-</main>
-
-    
     <footer class="absolute bottom-0 w-full bg-blue-600 text-white text-center py-4 text-[22px]">
         <h3>&copy; All Rights Reserved</h3>
     </footer>
+
 </body>
-<script type="module" 
-src="js/main-trajets.js"></script>
+
 </html>
