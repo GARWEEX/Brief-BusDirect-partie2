@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BusDirect</title>
+    <link rel="icon" type="image/jpeg" href="img/image.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body class="min-h-screen relative font-sans bg-gray-50 pb-20">
+
+    <header class="bg-blue-600 text-white w-full flex flex-col md:flex-row items-center justify-around py-5">
+        <div class="logo">
+            <h2 class="text-xl font-bold">BusDirect</h2>
+        </div>
+        
+        <h2 class="text-white px-3 py-1 font-semibold rounded text-center ">Safi &rarr; Marrakech</h2>
+        
+        <nav>
+            <ul class="flex space-x-4">
+                <li>
+                    <a href="index.html" class="text-white text-[18px] px-4 capitalize underline ">Home</a>
+                </li>
+                <li>
+                    <a href="ticket.html" class="text-white text-[18px] px-4 capitalize no-underline">Ticket</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="py-6 px-6 flex flex-col lg:flex-row justify-between items-start gap-6">
+        <div class="w-full lg:max-w-md p-4 sm:p-6 bg-white border border-gray-300 rounded-lg shadow-md">
+         
+            <p class="text-2xl font-semibold text-black mb-3 text-center">First Place</p>
+            <div class="grid grid-cols-5 gap-2 mb-6">
+                <div data-seat="1" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">1</div>
+                <div data-seat="2" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">2</div>
+                <div data-seat="3" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">3</div>
+                <div data-seat="4" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">4</div>
+                <div data-seat="5" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">5</div>
+                <div data-seat="6" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">6</div>
+                <div data-seat="7" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">7</div>
+                <div data-seat="8" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">8</div>
+                <div data-seat="9" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">9</div>
+                <div data-seat="10" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">10</div>
+            </div>
+
+            <p class="text-2xl font-semibold text-black mb-3 text-center">Second Place</p>
+            <div class="grid grid-cols-5 gap-2 mb-6">
+                <div data-seat="11" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">11</div>
+                <div data-seat="12" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">12</div>
+                <div data-seat="13" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">13</div>
+                <div data-seat="14" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">14</div>
+                <div data-seat="15" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">15</div>
+                <div data-seat="16" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">16</div>
+                <div data-seat="17" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">17</div>
+                <div data-seat="18" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">18</div>
+                <div data-seat="19" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">19</div>
+                <div data-seat="20" class="sieg bg-blue-400 text-black font-semibold py-2 rounded text-center border">20</div>
+            </div>
+
+            <div class="flex gap-4">
+                <p>
+                    <span class="inline-block w-3 h-3 bg-blue-400 rounded mr-px"></span>
+                    disponible 
+                </p>
+            
+                <p>
+                    <span class="inline-block w-3 h-3 bg-red-500 rounded"></span>
+                    reserver
+                </p>
+            </div>
+
+        </div>
+
+        <div class="w-full lg:flex-1 min-w-0 mb-6 p-3 sm:p-4 bg-blue-50 border border-blue-200 rounded-lg text-center" id="myForm">    
+            <div class="bg-white border border-gray-300 ">
+                <p class="text-sm text-gray-600 font-medium">Prix par ticket: <span class="font-bold text-gray-800">80 DH</span></p>
+                <p class="text-xl font-bold text-blue-600 mt-1">
+                    Total: <span id="totalPrice">0</span> DH
+                </p>
+            </div>
+
+                <p class="text-2xl font-semibold text-black mb-3 text-center">Acheter une place</p>
+                <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_auto] gap-2 mb-6">
+                    <input type="text" id="buyName" placeholder="Entrer votre prénom:" class="border border-gray-300 p-1 rounded w-full" required>
+                    <select id="buySeat" class="border border-gray-300 p-1 rounded">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                    <button type="button" id="buyBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Submit</button>
+                </div>
+
+                <p class="text-2xl font-semibold text-black mb-3 text-center">Modifier le nom</p>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-6">
+    <select id="modSeat" class="border border-gray-300 p-1 rounded">
+        <option value="">Choisir le siège à modifier</option>
+    </select>
+
+    <input
+        type="text"
+        id="modName"
+        placeholder="Entrer le nouveau nom"
+        class="border border-gray-300 p-1 rounded w-full"
+    >
+</div>
+
+<div class="grid grid-cols-1 lg-clos-[minmax(0,1fr)_auto] gap-2 mb-6">
+    <select id="newSeat" class="border border-gray-300 p-1 rounded">
+        <option value="">Choisir le nouveau siège</option>
+    </select>
+
+    <button type="button" id="modBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+        Submit
+    </button>
+</div>
+                <p class="text-2xl font-semibold text-black mb-3 text-center">Supprimer</p>
+                <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-2">
+                    <select id="delSeat" class="border border-gray-300 p-1 rounded w-full">
+                        <option value="">Choisir votre siège</option>
+                    </select> 
+                    <button type="button" id="delBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Submit</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+
+    <footer class="absolute bottom-0 w-full bg-blue-600 text-white text-center py-4 text-[22px]">
+        <h3>&copy; All Rights Reserved</h3>
+    </footer>
+
+</body>
+
+</html>
