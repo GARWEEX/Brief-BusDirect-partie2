@@ -7,12 +7,9 @@
     <title>BusDirect</title>
     <link rel="icon" type="image/jpeg" href="img/image.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="script.js" defer></script>
+   
 </head>
-
-<body class="min-h-screen relative font-sans bg-gray-50 pb-20">
-
-    <header class="bg-blue-600 text-white w-full flex flex-col md:flex-row items-center justify-around py-5">
+<header class="bg-blue-600 text-white w-full flex flex-col md:flex-row items-center justify-around py-5">
         <div class="logo">
             <h2 class="text-xl font-bold">BusDirect</h2>
         </div>
@@ -22,7 +19,7 @@
         <nav>
             <ul class="flex space-x-4">
                 <li>
-                    <a href="index.html" class="text-white text-[18px] px-4 capitalize underline ">Home</a>
+                    <a target="_blank" href="index.html" class="text-white text-[18px] px-4 capitalize underline ">Home</a>
                 </li>
                 <li>
                     <a href="ticket.html" class="text-white text-[18px] px-4 capitalize no-underline">Ticket</a>
@@ -30,7 +27,9 @@
             </ul>
         </nav>
     </header>
+<body class="min-h-screen relative font-sans bg-gray-50 pb-20">
 
+    
     <main class="py-6 px-6 flex flex-col lg:flex-row justify-between items-start gap-6">
         <div class="w-full lg:max-w-md p-4 sm:p-6 bg-white border border-gray-300 rounded-lg shadow-md">
          
@@ -65,12 +64,16 @@
             <div class="flex gap-4">
                 <p>
                     <span class="inline-block w-3 h-3 bg-blue-400 rounded mr-px"></span>
-                    disponible 
+                    DISPONIBLE 
                 </p>
             
                 <p>
                     <span class="inline-block w-3 h-3 bg-red-500 rounded"></span>
-                    reserver
+                    RESERVED
+                </p>
+                <p>
+                    <span class="inline-block w-3 h-3 bg-yellow-400 rounded"></span>
+                    VIP
                 </p>
             </div>
 
@@ -151,7 +154,8 @@
     <footer class="absolute bottom-0 w-full bg-blue-600 text-white text-center py-4 text-[22px]">
         <h3>&copy; All Rights Reserved</h3>
     </footer>
-
+<script type="module" 
+src="js/main-cabine.js"></script>
 </body>
 
 </html>
