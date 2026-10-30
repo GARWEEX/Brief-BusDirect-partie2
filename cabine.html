@@ -90,6 +90,7 @@
                 <p class="text-2xl font-semibold text-black mb-3 text-center">Acheter une place</p>
                 <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_auto] gap-2 mb-6">
                     <input type="text" id="buyName" placeholder="Entrer votre prénom:" class="border border-gray-300 p-1 rounded w-full" required>
+                    <input type="text" id="attente" placeholder="Entrer votre numero" class="border border-gray-300 p-1 rounded w-full" required>
                     <select id="buySeat" class="border border-gray-300 p-1 rounded">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -112,7 +113,9 @@
                         <option value="19">19</option>
                         <option value="20">20</option>
                     </select>
-                    <button type="button" id="buyBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Submit</button>
+                     <button type="button" id="buyBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+        Submit
+    </button>
                 </div>
 
                 <p class="text-2xl font-semibold text-black mb-3 text-center">Modifier le nom</p>
@@ -146,6 +149,13 @@
                     </select> 
                     <button type="button" id="delBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Submit</button>
                 </div>
+                <p class="text-2xl font-semibold text-black mb-3 text-center">liste d'attente</p>
+                <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_auto] gap-2 mb-6">
+                    <input type="text" id="attente" placeholder="Entrer votre prénom:" class="border border-gray-300 p-1 rounded w-full" required>
+                    <input type="text" id="attente" placeholder="Entrer votre numero" class="border border-gray-300 p-1 rounded w-full" required>
+
+                    <button type="button" id="attBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Submit</button>
+                </div>
             </form>
         </div>
     </main>
@@ -154,8 +164,9 @@
     <footer class="absolute bottom-0 w-full bg-blue-600 text-white text-center py-4 text-[22px]">
         <h3>&copy; All Rights Reserved</h3>
     </footer>
-<script type="module" 
-src="js/main-cabine.js"></script>
+<script type="module" src="js/main-cabine.js"></script>
+<script type="module" src="js/store.js"></script>
+
 </body>
 
 </html>
