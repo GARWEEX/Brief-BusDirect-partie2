@@ -1,0 +1,218 @@
+[
+  {
+    "id": 1,
+    "departure": "Safi",
+    "destination": "Youssoufia",
+    "departureTime": "07:30",
+    "arrivalTime": "08:30",
+    "price": 25,
+    "capacity": 20,
+    "reservations": [
+      {
+        "seat": 4,
+        "name": "Adil Tazi",
+        "phone": "0699869879"
+      },
+      {
+        "seat": 11,
+        "name": "Anas Fassi",
+        "phone": "0691141707"
+      },
+      {
+        "seat": 17,
+        "name": "Laila Benjelloun",
+        "phone": "0664556815"
+      },
+      {
+        "seat": 18,
+        "name": "Youssef Rami",
+        "phone": "0747294055"
+      }
+    ],
+    "waitingList": []
+  },
+  {
+    "id": 2,
+    "departure": "Safi",
+    "destination": "Marrakech",
+    "departureTime": "08:00",
+    "arrivalTime": "10:30",
+    "price": 90,
+    "capacity": 20,
+    "reservations": [
+      {
+        "seat": 2,
+        "name": "Ghita El Mansouri",
+        "phone": "0769788093"
+      },
+      {
+        "seat": 3,
+        "name": "Bilal El Amrani",
+        "phone": "0681967273"
+      },
+      {
+        "seat": 7,
+        "name": "Rania Tazi",
+        "phone": "0778486488"
+      },
+      {
+        "seat": 8,
+        "name": "Othmane Zahraoui",
+        "phone": "0763440029"
+      },
+      {
+        "seat": 9,
+        "name": "Anas El Mansouri",
+        "phone": "0753477876"
+      },
+      {
+        "seat": 10,
+        "name": "Zineb Bennani",
+        "phone": "0757178472"
+      },
+      {
+        "seat": 13,
+        "name": "Hajar Zahraoui",
+        "phone": "0647513627"
+      },
+      {
+        "seat": 14,
+        "name": "Ghita Alaoui",
+        "phone": "0607981933"
+      },
+      {
+        "seat": 15,
+        "name": "Khadija Haddad",
+        "phone": "0684520599"
+      },
+      {
+        "seat": 16,
+        "name": "Bilal Zahraoui",
+        "phone": "0683792984"
+      },
+      {
+        "seat": 17,
+        "name": "Youssef Bouzidi",
+        "phone": "0629486628"
+      },
+      {
+        "seat": 19,
+        "name": "Asmae Chraibi",
+        "phone": "0701610550"
+      }
+    ],
+    "waitingList": []
+  },
+  {
+    "id": 3,
+    "departure": "Safi",
+    "destination": "Casablanca",
+    "departureTime": "09:00",
+    "arrivalTime": "13:00",
+    "price": 140,
+    "capacity": 20,
+    "reservations": [
+      {
+        "seat": 1,
+        "name": "Houda Fassi",
+        "phone": "0686032080"
+      },
+      {
+        "seat": 2,
+        "name": "Anas Chraibi",
+        "phone": "0702838222"
+      },
+      {
+        "seat": 3,
+        "name": "Karim Lahlou",
+        "phone": "0786164252"
+      },
+      {
+        "seat": 4,
+        "name": "Hamza Naciri",
+        "phone": "0764725877"
+      },
+      {
+        "seat": 5,
+        "name": "Khadija El Mansouri",
+        "phone": "0713301756"
+      },
+      {
+        "seat": 6,
+        "name": "Zineb Berrada",
+        "phone": "0652589831"
+      },
+      {
+        "seat": 7,
+        "name": "Houda Lahlou",
+        "phone": "0694948214"
+      },
+      {
+        "seat": 8,
+        "name": "Khadija Bouzidi",
+        "phone": "0610521854"
+      },
+      {
+        "seat": 9,
+        "name": "Ilyas Idrissi",
+        "phone": "0752441064"
+      },
+      {
+        "seat": 10,
+        "name": "Hajar Alaoui",
+        "phone": "0613041189"
+      },
+      {
+        "seat": 11,
+        "name": "Ghita Kettani",
+        "phone": "0779906593"
+      },
+      {
+        "seat": 12,
+        "name": "Hajar Tazi",
+        "phone": "0784645060"
+      },
+      {
+        "seat": 13,
+        "name": "Nadia Benjelloun",
+        "phone": "0714659085"
+      },
+      {
+        "seat": 14,
+        "name": "Mehdi Rami",
+        "phone": "0612911028"
+      },
+      {
+        "seat": 15,
+        "name": "Meryem Haddad",
+        "phone": "0706925666"
+      },
+      {
+        "seat": 16,
+        "name": "Imane Bouzidi",
+        "phone": "0622808864"
+      },
+      {
+        "seat": 17,
+        "name": "Asmae El Amrani",
+        "phone": "0600487645"
+      },
+      {
+        "seat": 18,
+        "name": "Omar Bakkali",
+        "phone": "0628084585"
+      },
+      {
+        "seat": 19,
+        "name": "Sara Alaoui",
+        "phone": "0670382653"
+      },
+      {
+        "seat": 20,
+        "name": "Zineb Lahlou",
+        "phone": "0735577879"
+      }
+    ],
+    "waitingList": []
+  }
+]

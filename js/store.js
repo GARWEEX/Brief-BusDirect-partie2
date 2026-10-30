@@ -1,23 +1,22 @@
-fetch ('./data/data.json')
-.then(function (res){
-    return res.json();
-})
+export function initialiser() {
+    const data = localStorage.getItem("trips");
 
-.then(function(data){
-    appendData(data);
-    console.log(data)
-})
-
-.catch(function(err){
-    console.log('error:'+err);
-});
-
-function appendData(data){
-    let mainContainer = document.getElementById("traget");
-    
-    for (let i=0;i < data.length;i++){
-        let div = document.createElement("div");
-        div.innerHTML =data[i].destination;
-        mainContainer.appendChild(div);
+    if (data !== null) {
+        return Promise.resolve(JSON.parse(data));
+    } else {
+        return fetch('./data/trips.json')
+            .then(async function (res) {
+                const trips = await res.json();
+                sauvegrader(trips);
+                return trips;
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+                return [];
+            });
     }
+}
+
+function sauvegrader(trips) {
+    return localStorage.setItem("trips", JSON.stringify(trips));
 }

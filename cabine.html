@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BusDirect</title>
+    <title>BusDirect - Réservation</title>
     <link rel="icon" type="image/jpeg" href="img/image.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
-   
 </head>
-<header class="bg-blue-600 text-white w-full flex flex-col md:flex-row items-center justify-around py-5">
+
+<body class="min-h-screen relative font-sans bg-gray-50 pb-20">
+
+    <header class="bg-blue-600 text-white w-full flex flex-col md:flex-row items-center justify-around py-5">
         <div class="logo">
             <h2 class="text-xl font-bold">BusDirect</h2>
         </div>
@@ -19,18 +21,16 @@
         <nav>
             <ul class="flex space-x-4">
                 <li>
-                    <a target="_blank" href="index.html" class="text-white text-[18px] px-4 capitalize underline ">Home</a>
+                    <a href="index.html" class="text-white text-[18px] px-4 capitalize no-underline">Home</a>
                 </li>
                 <li>
-                    <a href="ticket.html" class="text-white text-[18px] px-4 capitalize no-underline">Ticket</a>
+                    <a href="ticket.html" class="text-white text-[18px] px-4 capitalize underline">Ticket</a>
                 </li>
             </ul>
         </nav>
     </header>
-<body class="min-h-screen relative font-sans bg-gray-50 pb-20">
 
-    
-    <main class="py-6 px-6 flex flex-col lg:flex-row justify-between items-start gap-6">
+    <main class="py-6 px-6 max-w-6xl mx-auto flex flex-col lg:flex-row justify-between items-start gap-6">
         <div class="w-full lg:max-w-md p-4 sm:p-6 bg-white border border-gray-300 rounded-lg shadow-md">
          
             <p class="text-2xl font-semibold text-black mb-3 text-center">First Place</p>
@@ -71,102 +71,65 @@
                     <span class="inline-block w-3 h-3 bg-red-500 rounded"></span>
                     RESERVED
                 </p>
-                <p>
-                    <span class="inline-block w-3 h-3 bg-yellow-400 rounded"></span>
-                    VIP
-                </p>
             </div>
 
         </div>
 
         <div class="w-full lg:flex-1 min-w-0 mb-6 p-3 sm:p-4 bg-blue-50 border border-blue-200 rounded-lg text-center" id="myForm">    
-            <div class="bg-white border border-gray-300 ">
+            <div class="bg-white border border-gray-300 mb-4 p-2">
                 <p class="text-sm text-gray-600 font-medium">Prix par ticket: <span class="font-bold text-gray-800">80 DH</span></p>
                 <p class="text-xl font-bold text-blue-600 mt-1">
                     Total: <span id="totalPrice">0</span> DH
                 </p>
             </div>
 
-                <p class="text-2xl font-semibold text-black mb-3 text-center">Acheter une place</p>
-                <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_auto] gap-2 mb-6">
-                    <input type="text" id="buyName" placeholder="Entrer votre prénom:" class="border border-gray-300 p-1 rounded w-full" required>
-                    <input type="text" id="attente" placeholder="Entrer votre numero" class="border border-gray-300 p-1 rounded w-full" required>
-                    <select id="buySeat" class="border border-gray-300 p-1 rounded">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                    </select>
-                     <button type="button" id="buyBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
-        Submit
-    </button>
-                </div>
+            <p class="text-2xl font-semibold text-black mb-3 text-center">Acheter une place</p>
+            <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_auto] gap-2 mb-6">
+                <input type="text" id="buyName" placeholder="Entrer votre prénom:" class="border border-gray-300 p-1 rounded w-full" required>
+                <select id="buySeat" class="border border-gray-300 p-1 rounded">
+                    <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                    <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                    <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                    <option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                    <option value="13">13</option><option value="14">14</option><option value="15">15</option>
+                    <option value="16">16</option><option value="17">17</option><option value="18">18</option>
+                    <option value="19">19</option><option value="20">20</option>
+                </select>
+                <button type="button" id="buyBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Submit</button>
+            </div>
 
-                <p class="text-2xl font-semibold text-black mb-3 text-center">Modifier le nom</p>
+            <p class="text-2xl font-semibold text-black mb-3 text-center">Modifier le nom / siège</p>
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-6">
-    <select id="modSeat" class="border border-gray-300 p-1 rounded">
-        <option value="">Choisir le siège à modifier</option>
-    </select>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2">
+                <select id="modSeat" class="border border-gray-300 p-1 rounded">
+                    <option value="">Choisir le siège à modifier</option>
+                </select>
 
-    <input
-        type="text"
-        id="modName"
-        placeholder="Entrer le nouveau nom"
-        class="border border-gray-300 p-1 rounded w-full"
-    >
-</div>
+                <input type="text" id="modName" placeholder="Entrer le nouveau nom" class="border border-gray-300 p-1 rounded w-full">
+            </div>
 
-<div class="grid grid-cols-1 lg-clos-[minmax(0,1fr)_auto] gap-2 mb-6">
-    <select id="newSeat" class="border border-gray-300 p-1 rounded">
-        <option value="">Choisir le nouveau siège</option>
-    </select>
+            <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-2 mb-6">
+                <select id="newSeat" class="border border-gray-300 p-1 rounded">
+                    <option value="">Choisir le nouveau siège</option>
+                </select>
 
-    <button type="button" id="modBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
-        Submit
-    </button>
-</div>
-                <p class="text-2xl font-semibold text-black mb-3 text-center">Supprimer</p>
-                <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-2">
-                    <select id="delSeat" class="border border-gray-300 p-1 rounded w-full">
-                        <option value="">Choisir votre siège</option>
-                    </select> 
-                    <button type="button" id="delBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Submit</button>
-                </div>
-                <p class="text-2xl font-semibold text-black mb-3 text-center">liste d'attente</p>
-                <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_auto] gap-2 mb-6">
-                    <input type="text" id="attente" placeholder="Entrer votre prénom:" class="border border-gray-300 p-1 rounded w-full" required>
-                    <input type="text" id="attente" placeholder="Entrer votre numero" class="border border-gray-300 p-1 rounded w-full" required>
+                <button type="button" id="modBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Submit</button>
+            </div>
 
-                    <button type="button" id="attBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Submit</button>
-                </div>
-            </form>
+            <p class="text-2xl font-semibold text-black mb-3 text-center">Supprimer</p>
+            <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-2">
+                <select id="delSeat" class="border border-gray-300 p-1 rounded w-full">
+                    <option value="">Choisir votre siège</option>
+                </select> 
+                <button type="button" id="delBtn" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Submit</button>
+            </div>
         </div>
     </main>
-
 
     <footer class="absolute bottom-0 w-full bg-blue-600 text-white text-center py-4 text-[22px]">
         <h3>&copy; All Rights Reserved</h3>
     </footer>
-<script type="module" src="js/main-cabine.js"></script>
-<script type="module" src="js/store.js"></script>
 
+    <script type="module" src="js/main-cabine.js"></script>
 </body>
-
 </html>
