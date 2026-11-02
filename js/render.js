@@ -1,7 +1,7 @@
 import { estComplet, placeLibres } from "./reservations.js";
 
 export function renderTrajets(trips) {
-    const container = document.getElementById("cards-container") || document.getElementById("list");
+    const container = document.getElementById("cards-container");
 
     if (!container) return;
 

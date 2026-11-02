@@ -2,7 +2,7 @@ export function initialiser() {
     const data = localStorage.getItem("trips");
 
     if (data !== null) {
-        return Promise.resolve(JSON.parse(data));
+        return JSON.parse(data);
     } else {
         return fetch('./data/trips.json')
             .then(async function (res) {
@@ -10,6 +10,11 @@ export function initialiser() {
                 sauvegrader(trips);
                 return trips;
             })
+            .then(function(data){
+                appendData(data);
+                console.log(data);
+                return data;
+            })            
             .catch(function (err) {
                 console.log('error: ' + err);
                 return [];
