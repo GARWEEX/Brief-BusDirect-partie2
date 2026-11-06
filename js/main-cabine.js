@@ -1,179 +1,312 @@
-const submitButton = document.getElementById("submit-button") || document.getElementById("buyBtn");
-const modifyButton = document.getElementById("modify-button") || document.getElementById("modBtn");
-const deleteButton = document.getElementById("delete-button") || document.getElementById("delBtn");
-const nameInput = document.getElementById("reservation-name") || document.getElementById("buyName");
-const seatNumber = document.getElementById("seat-number") || document.getElementById("buySeat");
-const modifySeat = document.getElementById("modify-seat") || document.getElementById("modSeat");
-const deleteSeat = document.getElementById("delete-seat") || document.getElementById("delSeat");
-const newName = document.getElementById("new-name") || document.getElementById("modName");
-const newSeat = document.getElementById("new-seat") || document.getElementById("newSeat");
+import { initialiser, sauvegarder } from "./store.js";
+import { afficherCabine } from "./render.js";
+import { estComplet, premierSiegeLibre } from "./reservations.js";
+import { validerNom, validerTelephone } from "./validators.js";
 
-let reservations = JSON.parse(localStorage.getItem("reservations")) || [];
+let trips = [];
+let trip;
 
-function displayReservations() {
-  localStorage.setItem("reservations", JSON.stringify(reservations));
-  const ticketsTotal = document.getElementById("tickets-total") || document.getElementById("totalPrice");
-  if (ticketsTotal) ticketsTotal.textContent = reservations.length * 80;
+const id = Number(new URLSearchParams(location.search).get("id"));
+const tripInfo = document.getElementById("tripInfo");
 
-  for (let i = 1; i <= 20; i++) {
-    const seat = document.getElementById("seat-" + i) || document.querySelector(`[data-seat="${i}"]`);
+function afficherMessage(idElement, texte, erreur = false) {
+    const element = document.getElementById(idElement);
 
-    if (seat) {
-      seat.textContent = i;
-      seat.style.backgroundColor = "";
-      seat.style.color = "";
-      seat.classList.remove("bg-red-500", "text-white");
-    }
-  }
+    if (!element) return;
 
-  for (let i = 0; i < reservations.length; i++) {
-    const seatNum = reservations[i].seat;
-    const seat = document.getElementById("seat-" + seatNum) || document.querySelector(`[data-seat="${seatNum}"]`);
+    element.textContent = texte;
+    element.className = "text-sm mt-2 " +
+        (erreur ? "text-red-600" : "text-green-700");
 
-    if (seat) {
-      seat.textContent = seatNum + " - " + reservations[i].name;
-      seat.style.backgroundColor = "#c60000";
-      seat.style.color = "#ffffff";
-    }
-  }
-
-  if (modifySeat) modifySeat.innerHTML = '<option value="">Choisir votre prénom</option>';
-  if (deleteSeat) deleteSeat.innerHTML = '<option value="">Choisir une réservation</option>';
-
-  for (let i = 0; i < reservations.length; i++) {
-    if (modifySeat) {
-      const option1 = document.createElement("option");
-      option1.value = reservations[i].seat;
-      option1.textContent = reservations[i].name + " - Siège " + reservations[i].seat;
-      modifySeat.appendChild(option1);
-    }
-
-    if (deleteSeat) {
-      const option2 = document.createElement("option");
-      option2.value = reservations[i].seat;
-      option2.textContent = reservations[i].name + " - Siège " + reservations[i].seat;
-      deleteSeat.appendChild(option2);
-    }
-  }
-
-  localStorage.setItem("reservations", JSON.stringify(reservations));
+    setTimeout(() => {
+        element.textContent = "";
+    }, 3000);
 }
 
-if (submitButton) {
-  submitButton.addEventListener("click", function () {
-    const name = nameInput ? nameInput.value.trim() : "";
-    const seat = seatNumber ? seatNumber.value : "";
+function actualiserSiege() {
+    afficherCabine(trip);
+}
 
-    if (name === "") {
-      alert("Veuillez saisir votre prénom.");
-      return;
+function enregistrer() {
+    sauvegarder(trips);
+    actualiserSiege();
+}
+
+function validerPassager(nomId, telephoneId, erreurNomId, erreurTelephoneId,
+    reservations, attente, indexIgnore = -1) {
+
+    const nom = document.getElementById(nomId).value.trim();
+    const telephone = document.getElementById(telephoneId).value.trim();
+
+    const erreurNom = validerNom(
+        nom, reservations, attente, indexIgnore
+    );
+
+    const erreurTelephone = validerTelephone(
+        telephone, reservations, attente, indexIgnore
+    );
+
+    document.getElementById(erreurNomId).textContent = erreurNom;
+    document.getElementById(erreurTelephoneId).textContent = erreurTelephone;
+
+    return {
+        name: nom,
+        phone: telephone,
+        erreur: erreurNom || erreurTelephone
+    };
+}
+
+function reserverPassager(event) {
+    event.preventDefault();
+
+    if (estComplet(trip)) {
+        afficherMessage(
+            "reserveMessage",
+            "Le trajet est complet. Utilisez la liste d'attente.",
+            true
+        );
+        return;
     }
 
-    let nameExists = false;
-    reservations.forEach((reservation) => {
-      if (reservation.name.toLowerCase() === name.toLowerCase()) {
-        nameExists = true;
-      }
+    const passager = validerPassager(
+        "reserveName",
+        "reservePhone",
+        "reserveNameError",
+        "reservePhoneError",
+        trip.reservations,
+        trip.waitingList
+    );
+
+    if (passager.erreur) return;
+
+    const choix = document.getElementById("reserveSeat").value;
+    let siege = choix === "" ? premierSiegeLibre(trip) : Number(choix);
+
+    if (!siege && choix === "") {
+        afficherMessage(
+            "reserveMessage",
+            "Aucun siège normal libre. Choisissez un siège VIP dans la liste.",
+            true
+        );
+        return;
+    }
+
+    if (!Number.isInteger(siege) || siege < 1 || siege > trip.capacity) {
+        afficherMessage("reserveMessage", "Choisissez un siège valide.", true);
+        return;
+    }
+
+    const siegeOccupe = trip.reservations.some(reservation => {
+        return Number(reservation.seat) === siege;
     });
 
-    if (nameExists) {
-      alert("Vous avez déjà une réservation avec ce prénom.");
-      return;
+    if (siegeOccupe) {
+        afficherMessage("reserveMessage", "Ce siège est déjà occupé.", true);
+        return;
     }
 
-    let seatReserved = false;
+    trip.reservations.push({
+        name: passager.name,
+        phone: passager.phone,
+        seat: siege
+    });
 
-    for (let i = 0; i < reservations.length; i++) {
-      if (Number(reservations[i].seat) === Number(seat)) {
-        seatReserved = true;
-        break;
-      }
-    }
-
-    if (seatReserved) {
-      alert("Ce siège est déjà réservé.");
-      return;
-    }
-
-    reservations.push({ name: name, seat: Number(seat) });
-
-    displayReservations();
-
-    if (nameInput) nameInput.value = "";
-
-    alert("Réservation ajoutée avec succès.");
-  });
+    enregistrer();
+    document.getElementById("reserveForm").reset();
+    afficherMessage("reserveMessage", "Réservation confirmée.");
 }
 
-if (modifyButton) {
-  modifyButton.addEventListener("click", function () {
-    const seat = modifySeat ? modifySeat.value : "";
-    const name = newName ? newName.value.trim() : "";
-    const seatChange = newSeat ? newSeat.value : "";
+function chargerPassager(event) {
+    const index = event.target.value;
 
-    if (seat === "") {
-      alert("Veuillez choisir une réservation.");
-      return;
+    if (index === "") {
+        document.getElementById("editName").value = "";
+        document.getElementById("editPhone").value = "";
+        actualiserSiege();
+        return;
     }
 
-    if (name === "") {
-      alert("Veuillez saisir le nouveau prénom.");
-      return;
-    }
+    const passager = trip.reservations[Number(index)];
 
-    let seatReserved = false;
+    if (!passager) return;
 
-    for (let i = 0; i < reservations.length; i++) {
-      if (
-        Number(reservations[i].seat) === Number(seatChange) &&
-        Number(reservations[i].seat) !== Number(seat)
-      ) {
-        seatReserved = true;
-        break;
-      }
-    }
-
-    if (seatReserved) {
-      alert("Ce siège est déjà réservé.");
-      return;
-    }
-
-    for (let i = 0; i < reservations.length; i++) {
-      if (Number(reservations[i].seat) === Number(seat)) {
-        reservations[i].name = name;
-        if (seatChange) reservations[i].seat = Number(seatChange);
-        break;
-      }
-    }
-
-    displayReservations();
-
-    if (newName) newName.value = "";
-
-    alert("Réservation modifiée avec succès.");
-  });
+    actualiserSiege();
+    document.getElementById("editName").value = passager.name;
+    document.getElementById("editPhone").value = passager.phone;
+    document.getElementById("editSeat").value = String(passager.seat);
 }
 
-if (deleteButton) {
-  deleteButton.addEventListener("click", function () {
-    const seat = deleteSeat ? deleteSeat.value : "";
+function modifierPassager(event) {
+    event.preventDefault();
 
-    if (seat === "") {
-      alert("Veuillez choisir une réservation.");
-      return;
+    const index = document.getElementById("editPassenger").value;
+
+    if (index === "" || !trip.reservations[Number(index)]) {
+        afficherMessage("editMessage", "Choisissez une réservation.", true);
+        return;
     }
 
-    for (let i = 0; i < reservations.length; i++) {
-      if (Number(reservations[i].seat) === Number(seat)) {
-        reservations.splice(i, 1);
-        break;
-      }
+    const numero = Number(index);
+    const passager = validerPassager(
+        "editName",
+        "editPhone",
+        "editNameError",
+        "editPhoneError",
+        trip.reservations,
+        trip.waitingList,
+        numero
+    );
+
+    if (passager.erreur) return;
+
+    const ancienneReservation = trip.reservations[numero];
+    const valeurSiege = document.getElementById("editSeat").value;
+    const siege = valeurSiege === ""
+        ? Number(ancienneReservation.seat)
+        : Number(valeurSiege);
+
+    if (!Number.isInteger(siege) || siege < 1 || siege > trip.capacity) {
+        afficherMessage("editMessage", "Choisissez un siège valide.", true);
+        return;
     }
 
-    displayReservations();
+    const siegeOccupe = trip.reservations.some((reservation, i) => {
+        return i !== numero && Number(reservation.seat) === siege;
+    });
 
-    alert("Réservation supprimée avec succès.");
-  });
+    if (siegeOccupe) {
+        afficherMessage("editMessage", "Ce siège est déjà occupé.", true);
+        return;
+    }
+
+    ancienneReservation.name = passager.name;
+    ancienneReservation.phone = passager.phone;
+    ancienneReservation.seat = siege;
+
+    enregistrer();
+    afficherMessage("editMessage", "Réservation modifiée.");
 }
 
-displayReservations();
+function annulerPassager(event) {
+    event.preventDefault();
+
+    const index = document.getElementById("cancelPassenger").value;
+
+    if (index === "" || !trip.reservations[Number(index)]) {
+        afficherMessage("cancelMessage", "Choisissez une réservation.", true);
+        return;
+    }
+
+    const numero = Number(index);
+    const siege = Number(trip.reservations[numero].seat);
+
+    trip.reservations.splice(numero, 1);
+
+    let texte = "Réservation annulée.";
+
+    if (trip.waitingList.length > 0) {
+        const passager = trip.waitingList.shift();
+
+        trip.reservations.push({
+            name: passager.name,
+            phone: passager.phone,
+            seat: siege
+        });
+
+        texte = `${passager.name} a obtenu le siège ${siege}.`;
+    }
+
+    document.getElementById("cancelForm").reset();
+    document.getElementById("editForm").reset();
+    enregistrer();
+    afficherMessage("cancelMessage", texte);
+}
+
+function ajouterListeAttente(event) {
+    event.preventDefault();
+
+    if (!estComplet(trip)) {
+        afficherMessage(
+            "waitMessage",
+            "Il reste des places. Réservez directement.",
+            true
+        );
+        return;
+    }
+
+    const passager = validerPassager(
+        "waitName",
+        "waitPhone",
+        "waitNameError",
+        "waitPhoneError",
+        trip.reservations,
+        trip.waitingList
+    );
+
+    if (passager.erreur) return;
+
+    trip.waitingList.push({
+        name: passager.name,
+        phone: passager.phone
+    });
+
+    enregistrer();
+    document.getElementById("waitForm").reset();
+    afficherMessage("waitMessage", "Ajouté à la liste d'attente.");
+}
+
+function retirerPassagerAttente(event) {
+    const bouton = event.target.closest("[data-index]");
+
+    if (!bouton) return;
+
+    const index = Number(bouton.dataset.index);
+
+    if (!Number.isInteger(index) || index < 0 || index >= trip.waitingList.length) {
+        return;
+    }
+
+    trip.waitingList.splice(index, 1);
+    enregistrer();
+    afficherMessage("waitMessage", "Passager retiré de la liste d'attente.");
+}
+
+async function afficherTout() {
+    try {
+        trips = await initialiser();
+        trip = trips.find(trip => Number(trip.id) === id);
+
+        if (!trip) {
+            tripInfo.textContent = "Trajet introuvable.";
+            document.getElementById("planBus").innerHTML = "";
+            document.querySelector("main > .grid")?.classList.add("hidden");
+            return;
+        }
+
+        actualiserSiege();
+
+        document.getElementById("reserveForm")
+            .addEventListener("submit", reserverPassager);
+
+        document.getElementById("editPassenger")
+            .addEventListener("change", chargerPassager);
+
+        document.getElementById("editForm")
+            .addEventListener("submit", modifierPassager);
+
+        document.getElementById("cancelForm")
+            .addEventListener("submit", annulerPassager);
+
+        document.getElementById("waitForm")
+            .addEventListener("submit", ajouterListeAttente);
+
+        document.getElementById("waitingList")
+            .addEventListener("click", retirerPassagerAttente);
+    } catch (erreur) {
+        tripInfo.textContent =
+            "Erreur de chargement. Ouvrez le projet avec Live Server.";
+        console.error(erreur);
+    }
+}
+
+afficherTout();
